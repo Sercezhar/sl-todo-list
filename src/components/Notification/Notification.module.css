@@ -1,0 +1,9 @@
+.message {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.message h2 {
+  color: #ccc;
+  text-transform: uppercase;
+}

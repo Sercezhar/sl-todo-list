@@ -1,0 +1,4 @@
+.list {
+  border: var(--border-main);
+  overflow: hidden;
+}

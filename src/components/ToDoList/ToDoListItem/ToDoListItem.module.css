@@ -1,0 +1,157 @@
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+}
+
+@media screen and (width >= 768px) {
+  .item {
+    flex-wrap: nowrap;
+  }
+}
+
+.item:not(:last-child) {
+  border-bottom: var(--border-main);
+}
+
+.buttonGroup,
+.checkLabel {
+  display: flex;
+}
+
+@media screen and (width < 768px) {
+  .buttonGroup {
+    width: 100%;
+  }
+
+  .checkLabel {
+    margin-top: 0.43rem;
+    margin-bottom: 0.95rem;
+  }
+
+  .inputEdit {
+    margin-right: 0.67rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.inputEdit {
+  margin-left: 0.67rem;
+  padding: 6px 12px;
+  width: 100%;
+  border: var(--border-main);
+  outline: none;
+}
+
+@media screen and (width >= 768px) {
+  .inputEdit {
+    margin-right: 1rem;
+  }
+}
+
+.inputEdit:focus {
+  box-shadow: var(--box-shadow-focus);
+}
+
+.button {
+  padding: 6px 12px;
+  border: 1px solid var(--accent-color);
+  background-color: #fff;
+  outline: none;
+  transition-property: background;
+  transition: 150ms ease-in-out;
+}
+
+@media screen and (width < 768px) {
+  .button {
+    width: 50%;
+  }
+}
+
+.button:first-of-type {
+  margin-right: 0.6rem;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--accent-color);
+}
+
+.button:focus {
+  box-shadow: var(--box-shadow-focus);
+}
+
+.button:disabled {
+  opacity: 0.7;
+  border-color: var(--disabled-color);
+  pointer-events: none;
+}
+
+.button svg {
+  fill: var(--accent-color);
+  pointer-events: none;
+}
+
+.button:hover svg,
+.button:focus svg {
+  fill: #fff;
+}
+
+.button:disabled svg {
+  fill: var(--disabled-color);
+}
+
+/* custom checkbox  */
+
+.checkInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+.checkInput:checked + .checkBox {
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23fff' viewBox='0 0 24 24'%3E%3Cpath d='M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+}
+
+.checkInput:focus + .checkBox {
+  box-shadow: var(--box-shadow-focus);
+}
+
+.checkInput:disabled + .checkBox {
+  border-color: var(--disabled-color);
+}
+
+.checkInput:checked:disabled + .checkBox {
+  background-color: var(--disabled-color);
+}
+
+.checkInput:checked ~ .text {
+  text-decoration: line-through;
+}
+
+.checkBox {
+  flex: none;
+  margin-top: 0.25em;
+  margin-right: 0.5rem;
+  padding: 1px;
+  width: 1em;
+  height: 1em;
+  background-color: #fff;
+  border: var(--border-checkbox);
+  transition-property: background, border-color;
+  transition: 150ms ease-in-out;
+}

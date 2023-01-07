@@ -1,0 +1,83 @@
+.form {
+  margin-bottom: 22px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (width >= 768px) {
+  .inputGroup {
+    flex-direction: row;
+  }
+}
+
+.input {
+  flex: 1 1 auto;
+  margin-bottom: 10px;
+  padding: 12px 20px;
+  width: 100%;
+  font-size: 16px;
+  border: var(--border-main);
+  outline: none;
+  transition: box-shadow 150ms ease-in-out;
+}
+
+@media screen and (width >= 768px) {
+  .input {
+    margin-bottom: 0;
+    width: 1%;
+  }
+}
+
+.input:focus {
+  box-shadow: inset var(--box-shadow-focus);
+}
+
+.input::placeholder {
+  opacity: 0.5;
+}
+
+.addButton,
+.clearButton {
+  padding: 6px 12px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border: var(--border-main);
+  outline: none;
+  transition: background 150ms ease-in-out;
+}
+
+.addButton:focus,
+.clearButton:focus {
+  box-shadow: inset var(--box-shadow-focus);
+}
+
+.addButton {
+  margin-bottom: 5px;
+  color: #fff;
+  background-color: var(--accent-color);
+}
+
+@media screen and (width >= 768px) {
+  .addButton {
+    margin-bottom: 0;
+    border-left: none;
+    border-right: none;
+  }
+}
+
+.addButton:hover,
+.addButton:focus {
+  background-color: #c19ee0;
+}
+
+.clearButton {
+  background-color: #fff;
+}
+
+.clearButton:hover,
+.clearButton:focus {
+  background-color: #f0f5fa;
+}

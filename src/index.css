@@ -1,5 +1,13 @@
 @import-normalize;
 
+:root {
+  --accent-color: #b185db;
+  --disabled-color: #ccc;
+  --border-main: 1px solid #ccc;
+  --border-checkbox: 1px solid #000;
+  --box-shadow-focus: 0 0 0 2px #00a8e8;
+}
+
 body {
   margin: 0;
   font-size: 14px;
