@@ -6,13 +6,13 @@
 
 @media screen and (width >= 480px) {
   .container {
-    width: 480px;
+    width: 452px;
   }
 }
 
 @media screen and (width >= 768px) {
   .container {
-    width: 768px;
+    width: 740px;
   }
 }
 
