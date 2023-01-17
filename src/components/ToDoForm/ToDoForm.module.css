@@ -1,5 +1,5 @@
-.form {
-  margin-bottom: 22px;
+.wrapper {
+  margin-bottom: 1.5rem;
 }
 
 .inputGroup {
@@ -31,7 +31,8 @@
 }
 
 .input:focus {
-  box-shadow: inset var(--box-shadow-focus);
+  box-shadow: var(--box-shadow-focus);
+  z-index: 2;
 }
 
 .input::placeholder {
@@ -51,7 +52,8 @@
 
 .addButton:focus,
 .clearButton:focus {
-  box-shadow: inset var(--box-shadow-focus);
+  box-shadow: var(--box-shadow-focus);
+  z-index: 2;
 }
 
 .addButton {
@@ -73,11 +75,15 @@
   background-color: #c19ee0;
 }
 
+.addButton:focus {
+  border-color: var(--accent-color);
+}
+
 .clearButton {
-  background-color: #fff;
+  background-color: var(--white-color);
 }
 
 .clearButton:hover,
 .clearButton:focus {
-  background-color: #f0f5fa;
+  background-color: var(--secondary-color);
 }

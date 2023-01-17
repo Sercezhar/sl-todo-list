@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import ToDoListItem from './ToDoListItem';
+import { useEffect, useState } from 'react';
 import Notification from '../Notification';
 import styles from './ToDoList.module.css';
+import ToDoListItem from './ToDoListItem';
 
 function ToDoList({ toDos, deleteToDo, editToDo, toggleChecked }) {
   const [textToEdit, setTextToEdit] = useState('');
@@ -20,7 +20,7 @@ function ToDoList({ toDos, deleteToDo, editToDo, toggleChecked }) {
   }, []);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       {toDos.length > 0 ? (
         <ul className={styles.list}>
           {toDos.map(({ text, id, done }) => (

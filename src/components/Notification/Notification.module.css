@@ -4,6 +4,6 @@
 }
 
 .message h2 {
-  color: #ccc;
+  color: var(--disabled-color);
   text-transform: uppercase;
 }

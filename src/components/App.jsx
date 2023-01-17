@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
 import { customAlphabet } from 'nanoid';
+import { useEffect, useState } from 'react';
 import Container from './Container/Container';
+import Pagination from './Pagination';
 import ToDoForm from './ToDoForm/ToDoForm';
 import ToDoList from './ToDoList/ToDoList';
 
@@ -12,10 +13,13 @@ const defaultToDos = [
   { id: 3, text: 'Learn TypeScript', done: false },
 ];
 
+const limit = 10;
+
 function App() {
   const [toDos, setToDos] = useState(() => {
     return JSON.parse(window.localStorage.getItem('todos')) ?? defaultToDos;
   });
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     window.localStorage.setItem('todos', JSON.stringify(toDos));
@@ -55,14 +59,32 @@ function App() {
     setToDos([]);
   }
 
+  function paginateToDos(array) {
+    const startIndex = currentPage * limit - limit;
+    const endIndex = currentPage * limit;
+    const paginatedToDos = array.slice(startIndex, endIndex);
+
+    if (paginatedToDos.length === 0 && currentPage > 1) {
+      setCurrentPage(prevState => prevState - 1);
+    }
+
+    return paginatedToDos;
+  }
+
   return (
     <Container>
       <ToDoForm addToDo={addToDo} clearList={clearList} />
       <ToDoList
-        toDos={toDos}
+        toDos={paginateToDos(toDos)}
         deleteToDo={deleteToDo}
         editToDo={editToDo}
         toggleChecked={toggleChecked}
+      />
+      <Pagination
+        currentPage={currentPage}
+        total={toDos.length}
+        limit={limit}
+        onPageChange={page => setCurrentPage(page)}
       />
     </Container>
   );

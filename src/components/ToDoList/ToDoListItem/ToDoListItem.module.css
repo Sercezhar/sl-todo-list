@@ -3,8 +3,10 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 12px 10px;
   font-size: 16px;
+  background-color: var(--white-color);
+  border-bottom: var(--border-main);
 }
 
 @media screen and (width >= 768px) {
@@ -13,8 +15,14 @@
   }
 }
 
-.item:not(:last-child) {
-  border-bottom: var(--border-main);
+.item:nth-of-type(10) {
+  border-bottom: none;
+}
+
+@media screen and (width < 768px) {
+  .item:last-of-type {
+    border-bottom: none;
+  }
 }
 
 .buttonGroup,
@@ -39,7 +47,6 @@
 }
 
 .inputEdit {
-  /* margin-left: 0.67rem; */
   margin-left: 0.74rem;
   padding: 6px 12px;
   width: 100%;
@@ -63,7 +70,7 @@
   justify-content: center;
   padding: 6px 10px;
   border: 1px solid var(--accent-color);
-  background-color: #fff;
+  background-color: var(--white-color);
   outline: none;
   transition-property: background;
   transition: 150ms ease-in-out;
@@ -154,7 +161,7 @@
   padding: 1px;
   width: 0.8em;
   height: 0.8em;
-  background-color: #fff;
+  background-color: var(--white-color);
   border: var(--border-checkbox);
   transition-property: background, border-color;
   transition: 150ms ease-in-out;

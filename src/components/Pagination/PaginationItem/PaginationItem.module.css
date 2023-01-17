@@ -1,0 +1,52 @@
+.pageItem {
+  display: inline-flex;
+}
+
+.pageButton {
+  position: relative;
+  margin-left: -1px;
+  padding: 0.5rem 0.8rem;
+  color: var(--black-color);
+  background-color: var(--white-color);
+  border: var(--border-main);
+  transition-property: color, background-color, border-color;
+  transition: 150ms ease-in-out;
+  outline: none;
+  cursor: pointer;
+}
+
+.pageButton:hover {
+  background-color: var(--secondary-color);
+}
+
+.pageButton:focus {
+  background-color: var(--secondary-color);
+  box-shadow: var(--box-shadow-focus);
+  z-index: 3;
+}
+
+.pageButton:disabled {
+  color: var(--disabled-color);
+  background-color: var(--white-color);
+  border-color: var(--disabled-color);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.pageButton svg {
+  display: block;
+  height: 16px;
+  width: 16px;
+}
+
+.pageItem:first-child .pageButton {
+  margin-left: 0;
+}
+
+.pageItem.active .pageButton {
+  color: #fff;
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  pointer-events: none;
+  z-index: 2;
+}

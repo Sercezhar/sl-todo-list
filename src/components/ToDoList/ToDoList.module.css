@@ -1,4 +1,16 @@
+.wrapper {
+  margin-bottom: 1.5rem;
+}
+
 .list {
+  min-height: fit-content;
   border: var(--border-main);
   overflow: hidden;
+  background-color: #f7f7f7;
+}
+
+@media screen and (width >= 768px) {
+  .list {
+    min-height: 589px;
+  }
 }

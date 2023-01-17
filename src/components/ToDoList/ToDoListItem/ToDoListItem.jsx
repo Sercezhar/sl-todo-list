@@ -1,4 +1,4 @@
-import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { GoCheck, GoX } from 'react-icons/go';
 import styles from './ToDoListItem.module.css';
 

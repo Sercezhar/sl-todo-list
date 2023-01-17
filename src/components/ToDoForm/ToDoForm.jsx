@@ -27,8 +27,8 @@ function ToDoForm({ addToDo, clearList }) {
   }
 
   return (
-    <div>
-      <form className={styles.form} onSubmit={handleSubmit}>
+    <div className={styles.wrapper}>
+      <form onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>
           <input
             className={styles.input}
