@@ -83,7 +83,9 @@ function App() {
     <Container>
       <ToDoForm addToDo={addToDo} clearList={clearList} />
 
-      <SortFeature sortOption={sortOption} setSortOption={setSortOption} />
+      {toDos.length > 0 ? (
+        <SortFeature sortOption={sortOption} setSortOption={setSortOption} />
+      ) : null}
 
       <ToDoList
         toDos={paginateToDos(toDos)}
