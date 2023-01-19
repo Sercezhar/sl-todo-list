@@ -36,9 +36,13 @@ function ToDoListItem({
     setTextToEdit(toDoText);
   }
 
-  function onEnterKey(event) {
+  function handleOnKeyPress(event) {
     if (event.key === 'Enter') {
       handleUpdate();
+    }
+
+    if (event.key === 'Escape') {
+      setToDoToEdit(-1);
     }
   }
 
@@ -51,7 +55,7 @@ function ToDoListItem({
           onChange={handleInputChange}
           onBlur={handleUpdate}
           autoFocus
-          onKeyDown={e => onEnterKey(e)}
+          onKeyDown={e => handleOnKeyPress(e)}
         />
       ) : (
         <label className={styles.checkLabel}>

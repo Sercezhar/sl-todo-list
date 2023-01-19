@@ -1,0 +1,73 @@
+.wrapper {
+  position: relative;
+  margin-bottom: 0.6rem;
+  width: fit-content;
+}
+
+.button,
+.list {
+  width: 180px;
+  background-color: var(--white-color);
+}
+
+.button,
+.item {
+  font-size: 14px;
+  border: var(--border-main);
+  outline: none;
+  cursor: pointer;
+  transition: background 150ms ease-in-out;
+}
+
+.button:hover,
+.item:hover {
+  background-color: var(--secondary-color);
+}
+
+.button:focus,
+.item:focus {
+  box-shadow: var(--box-shadow-focus);
+  background-color: var(--secondary-color);
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0.8rem;
+}
+
+.arrowIcon {
+  rotate: -90deg;
+  transition: rotate 150ms ease-in-out;
+}
+
+.arrowIcon.rotate {
+  rotate: 90deg;
+}
+
+.list {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 0.6rem);
+  display: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.list.show {
+  display: block;
+  pointer-events: auto;
+}
+
+.item {
+  position: relative;
+  padding: 0.8rem;
+}
+
+.item:not(:first-child) {
+  margin-top: -1px;
+}
+
+.item:focus {
+  z-index: 2;
+}

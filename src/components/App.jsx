@@ -2,6 +2,7 @@ import { customAlphabet } from 'nanoid';
 import { useEffect, useState } from 'react';
 import Container from './Container/Container';
 import Pagination from './Pagination';
+import SortFeature from './SortFeature';
 import ToDoForm from './ToDoForm/ToDoForm';
 import ToDoList from './ToDoList/ToDoList';
 
@@ -20,10 +21,14 @@ function App() {
     return JSON.parse(window.localStorage.getItem('todos')) ?? defaultToDos;
   });
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortOption, setSortOption] = useState(() => {
+    return window.localStorage.getItem('sortType') ?? 0;
+  });
 
   useEffect(() => {
     window.localStorage.setItem('todos', JSON.stringify(toDos));
-  }, [toDos]);
+    window.localStorage.setItem('sortType', sortOption);
+  }, [toDos, sortOption]);
 
   function addToDo(text) {
     const data = {
@@ -62,7 +67,10 @@ function App() {
   function paginateToDos(array) {
     const startIndex = currentPage * limit - limit;
     const endIndex = currentPage * limit;
-    const paginatedToDos = array.slice(startIndex, endIndex);
+    const paginatedToDos =
+      sortOption === 0
+        ? array.slice(startIndex, endIndex)
+        : [...array].reverse().slice(startIndex, endIndex);
 
     if (paginatedToDos.length === 0 && currentPage > 1) {
       setCurrentPage(prevState => prevState - 1);
@@ -74,12 +82,16 @@ function App() {
   return (
     <Container>
       <ToDoForm addToDo={addToDo} clearList={clearList} />
+
+      <SortFeature sortOption={sortOption} setSortOption={setSortOption} />
+
       <ToDoList
         toDos={paginateToDos(toDos)}
         deleteToDo={deleteToDo}
         editToDo={editToDo}
         toggleChecked={toggleChecked}
       />
+
       <Pagination
         currentPage={currentPage}
         total={toDos.length}

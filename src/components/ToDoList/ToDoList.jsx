@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Notification from '../Notification';
 import styles from './ToDoList.module.css';
 import ToDoListItem from './ToDoListItem';
@@ -6,18 +6,6 @@ import ToDoListItem from './ToDoListItem';
 function ToDoList({ toDos, deleteToDo, editToDo, toggleChecked }) {
   const [textToEdit, setTextToEdit] = useState('');
   const [toDoToEdit, setToDoToEdit] = useState(-1);
-
-  useEffect(() => {
-    function handleKeyDown(event) {
-      if (event.code === 'Escape') {
-        setToDoToEdit(-1);
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   return (
     <div className={styles.wrapper}>
