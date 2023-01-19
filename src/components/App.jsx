@@ -22,7 +22,7 @@ function App() {
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState(() => {
-    return window.localStorage.getItem('sortType') ?? 0;
+    return Number(window.localStorage.getItem('sortType')) ?? 0;
   });
 
   useEffect(() => {
