@@ -3,9 +3,16 @@ import Notification from '../Notification';
 import styles from './ToDoList.module.css';
 import ToDoListItem from './ToDoListItem';
 
-function ToDoList({ toDos, deleteToDo, editToDo, toggleChecked }) {
+function ToDoList({
+  toDos,
+  clickedTodo,
+  setClickedTodo,
+  deleteToDo,
+  editToDo,
+  toggleChecked,
+  showModal,
+}) {
   const [textToEdit, setTextToEdit] = useState('');
-  const [toDoToEdit, setToDoToEdit] = useState(-1);
 
   return (
     <div className={styles.wrapper}>
@@ -16,15 +23,16 @@ function ToDoList({ toDos, deleteToDo, editToDo, toggleChecked }) {
               key={id}
               id={id}
               text={text}
+              toDos={toDos}
+              clickedTodo={clickedTodo}
+              setClickedTodo={setClickedTodo}
               deleteToDo={() => deleteToDo(id)}
               toggleChecked={() => toggleChecked(id)}
               isDone={done}
-              toDoToEdit={toDoToEdit}
-              setToDoToEdit={setToDoToEdit}
               textToEdit={textToEdit}
               setTextToEdit={setTextToEdit}
               editToDo={editToDo}
-              toDos={toDos}
+              showModal={showModal}
             />
           ))}
         </ul>

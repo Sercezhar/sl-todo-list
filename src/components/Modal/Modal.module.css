@@ -1,0 +1,136 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: opacity 250ms var(--transition);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.backdrop.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  z-index: 3;
+}
+
+.modal {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px 20px;
+  height: fit-content;
+  width: 250px;
+  color: #000;
+  background-color: #fff;
+  box-shadow: var(--box-shadow-main);
+  border-radius: 0.5em;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    width: 360px;
+  }
+}
+
+.buttonClose {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  padding: 6px;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  transition-property: background;
+  transition: 250ms var(--transition);
+  cursor: pointer;
+  outline: none;
+}
+
+.buttonClose:focus {
+  background-color: var(--secondary-color);
+  box-shadow: var(--box-shadow-focus);
+  scale: 1.2;
+}
+
+.buttonClose:hover {
+  background-color: var(--secondary-color);
+  scale: 1.2;
+}
+
+.buttonClose svg {
+  fill: var(--accent-color);
+}
+
+.title {
+  /* @include mixins.font-style(20px, 1.35, 600); */
+
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* @media screen and (min-width: 768px) {
+    @include mixins.font-style(32px, 1);
+  } */
+
+.message {
+  margin-bottom: 16px;
+  font-size: 18px;
+
+  /* @media screen and (min-width: 768px) {
+    @include mixins.font-style(18px, 1.39);
+  } */
+}
+
+.buttonsGroup {
+  display: flex;
+  justify-content: right;
+}
+
+.button {
+  padding: 12px 12px;
+  font-size: 16px;
+  font-family: 'DM Sans', sans-serif;
+  text-transform: uppercase;
+  background-color: var(--white-color);
+  border: var(--border-main);
+  border-radius: 0.5em;
+  outline: none;
+  transition-property: background, opacity, scale;
+  transition: 150ms var(--transition);
+  cursor: pointer;
+}
+
+.button:focus {
+  box-shadow: var(--box-shadow-focus);
+  scale: 1.06;
+}
+
+.buttonCancel {
+  margin-right: 14px;
+}
+
+.buttonCancel:hover,
+.buttonCancel:focus {
+  background-color: var(--secondary-color);
+  scale: 1.06;
+}
+
+.buttonConfirm {
+  color: #fff;
+  background-color: var(--accent-color);
+  border: none;
+}
+
+.buttonConfirm:hover,
+.buttonConfirm:focus {
+  opacity: 0.8;
+  scale: 1.06;
+}

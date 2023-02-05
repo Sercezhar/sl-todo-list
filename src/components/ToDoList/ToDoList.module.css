@@ -5,12 +5,13 @@
 .list {
   min-height: fit-content;
   border: var(--border-main);
+  border-radius: 0.5em;
   overflow: hidden;
-  background-color: #f7f7f7;
+  background-color: #f8f6ff;
 }
 
 @media screen and (width >= 768px) {
   .list {
-    min-height: 589px;
+    min-height: 609px;
   }
 }

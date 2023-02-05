@@ -5,14 +5,14 @@ import styles from './ToDoListItem.module.css';
 function ToDoListItem({
   text,
   id,
-  deleteToDo,
-  toDoToEdit,
-  setToDoToEdit,
+  clickedTodo,
+  setClickedTodo,
   textToEdit,
   setTextToEdit,
   editToDo,
   isDone,
   toggleChecked,
+  showModal,
 }) {
   function handleInputChange(event) {
     const { value } = event.currentTarget;
@@ -23,17 +23,22 @@ function ToDoListItem({
   function handleUpdate() {
     const noChanges = text === textToEdit.trim();
     if (noChanges || textToEdit.length === 0 || textToEdit.trim() === '') {
-      setToDoToEdit(-1);
+      setClickedTodo(-1);
       return;
     }
 
     editToDo(id, textToEdit.trim());
-    setToDoToEdit(-1);
+    setClickedTodo(-1);
   }
 
   function onEdit(toDoId, toDoText) {
-    setToDoToEdit(toDoId);
+    setClickedTodo(toDoId + 'edit');
     setTextToEdit(toDoText);
+  }
+
+  function onDelete(id) {
+    showModal('Delete this to-do?', 'delete');
+    setClickedTodo(id);
   }
 
   function handleOnKeyPress(event) {
@@ -42,13 +47,15 @@ function ToDoListItem({
     }
 
     if (event.key === 'Escape') {
-      setToDoToEdit(-1);
+      setClickedTodo(-1);
     }
   }
 
+  const isEdit = clickedTodo === id + 'edit';
+
   return (
     <li className={styles.item}>
-      {toDoToEdit === id ? (
+      {isEdit ? (
         <input
           className={styles.inputEdit}
           value={textToEdit}
@@ -73,28 +80,36 @@ function ToDoListItem({
         </label>
       )}
 
-      <span className={styles.buttonGroup}>
+      <div className={styles.buttonGroup}>
         <button
           className={styles.button}
           type="button"
           onMouseDown={e => e.preventDefault()}
-          onClick={
-            toDoToEdit === id ? () => handleUpdate() : () => onEdit(id, text)
-          }
+          onClick={isEdit ? () => handleUpdate() : () => onEdit(id, text)}
           disabled={isDone}
         >
-          {toDoToEdit === id ? <GoCheck size={20} /> : <AiFillEdit size={20} />}
+          {isEdit ? <GoCheck size={20} /> : <AiFillEdit size={20} />}
         </button>
 
-        <button
-          className={styles.button}
-          type="button"
-          onMouseDown={e => e.preventDefault()}
-          onClick={toDoToEdit === id ? () => setToDoToEdit(-1) : deleteToDo}
-        >
-          {toDoToEdit === id ? <GoX size={20} /> : <AiFillDelete size={20} />}
-        </button>
-      </span>
+        {isEdit ? (
+          <button
+            className={styles.button}
+            type="button"
+            onMouseDown={e => e.preventDefault()}
+            onClick={() => setClickedTodo(-1)}
+          >
+            <GoX size={20} />
+          </button>
+        ) : (
+          <button
+            className={styles.button}
+            type="button"
+            onClick={() => onDelete(id)}
+          >
+            <AiFillDelete size={20} />
+          </button>
+        )}
+      </div>
     </li>
   );
 }

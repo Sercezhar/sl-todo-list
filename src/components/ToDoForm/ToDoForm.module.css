@@ -16,15 +16,18 @@
 .input {
   flex: 1 1 auto;
   margin-bottom: 10px;
-  padding: 12px 20px;
+  padding: 12px;
   font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
   border: var(--border-main);
+  border-radius: 0.5em;
   outline: none;
   transition: box-shadow 150ms ease-in-out;
 }
 
 @media screen and (width >= 768px) {
   .input {
+    margin-right: 10px;
     margin-bottom: 0;
     width: 1%;
   }
@@ -43,10 +46,12 @@
 .clearButton {
   padding: 12px 12px;
   font-size: 16px;
+  font-family: 'DM Sans', sans-serif;
   text-transform: uppercase;
-  border: var(--border-main);
+  border: none;
   outline: none;
-  transition: background 150ms ease-in-out;
+  transition-property: background, opacity;
+  transition: 250ms var(--transition);
   cursor: pointer;
 }
 
@@ -60,6 +65,7 @@
   margin-bottom: 5px;
   color: #fff;
   background-color: var(--accent-color);
+  border-radius: 0.5em;
 }
 
 @media screen and (width >= 768px) {
@@ -72,7 +78,8 @@
 
 .addButton:hover,
 .addButton:focus {
-  background-color: #c19ee0;
+  opacity: 0.8;
+  scale: 1.06;
 }
 
 .addButton:focus {
@@ -81,6 +88,8 @@
 
 .clearButton {
   background-color: var(--white-color);
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
 }
 
 .clearButton:hover,

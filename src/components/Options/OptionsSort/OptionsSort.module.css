@@ -1,22 +1,21 @@
 .wrapper {
   position: relative;
-  margin-bottom: 0.6rem;
   width: fit-content;
 }
 
 .button,
 .list {
-  width: 180px;
   background-color: var(--white-color);
+  border: var(--border-main);
+  border-radius: 0.5em;
 }
 
 .button,
 .item {
   font-size: 14px;
-  border: var(--border-main);
   outline: none;
   cursor: pointer;
-  transition: background 150ms ease-in-out;
+  transition: background 250ms var(--transition);
 }
 
 .button:hover,
@@ -32,13 +31,22 @@
 
 .button {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 0.6rem 0.8rem;
+  width: fit-content;
+  font-family: 'Open Sans', sans-serif;
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    width: 180px;
+  }
 }
 
 .arrowIcon {
   rotate: -90deg;
-  transition: rotate 150ms ease-in-out;
+  transition: rotate 150ms var(--transition);
 }
 
 .arrowIcon.rotate {
@@ -46,11 +54,15 @@
 }
 
 .list {
+  display: none;
   position: absolute;
   left: 0;
   top: calc(100% + 0.6rem);
-  display: none;
+  width: 180px;
+  border-radius: 0.5em;
+  overflow: hidden;
   pointer-events: none;
+  box-shadow: var(--box-shadow-main);
   z-index: 2;
 }
 
@@ -64,8 +76,8 @@
   padding: 0.8rem;
 }
 
-.item:not(:first-child) {
-  margin-top: -1px;
+.item:not(:last-child) {
+  border-bottom: 1px solid #ccc;
 }
 
 .item:focus {

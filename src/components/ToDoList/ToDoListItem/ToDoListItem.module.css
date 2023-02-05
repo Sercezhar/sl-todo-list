@@ -28,6 +28,7 @@
 .buttonGroup,
 .checkLabel {
   display: flex;
+  align-items: center;
 }
 
 @media screen and (width < 768px) {
@@ -41,16 +42,18 @@
   }
 
   .inputEdit {
+    margin-top: 0.15rem;
     margin-right: 0.67rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
   }
 }
 
 .inputEdit {
   margin-left: 0.74rem;
-  padding: 6px 12px;
+  padding: 4px 12px;
   width: 100%;
   font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
   border: var(--border-main);
   outline: none;
 }
@@ -68,28 +71,38 @@
 .button {
   display: flex;
   justify-content: center;
-  padding: 6px 10px;
-  border: 1px solid var(--accent-color);
-  background-color: var(--white-color);
+  padding: 0.6em;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
   outline: none;
   transition-property: background;
-  transition: 150ms ease-in-out;
+  transition: 250ms var(--transition);
   cursor: pointer;
 }
 
 @media screen and (width < 768px) {
   .button {
     width: 50%;
+    border: var(--border-main);
+    border-radius: 0.5em;
   }
 }
 
 .button:first-of-type {
-  margin-right: 0.6rem;
+  margin-right: 0.5rem;
 }
 
 .button:hover,
 .button:focus {
-  background-color: var(--accent-color);
+  background-color: var(--secondary-color);
+}
+
+@media screen and (min-width: 768px) {
+  .button:hover,
+  .button:focus {
+    scale: 1.2;
+  }
 }
 
 .button:focus {
@@ -104,12 +117,8 @@
 
 .button svg {
   fill: var(--accent-color);
+  transition: fill 150ms var(--transition);
   pointer-events: none;
-}
-
-.button:hover svg,
-.button:focus svg {
-  fill: #fff;
 }
 
 .button:disabled svg {
@@ -136,6 +145,7 @@
   background-size: contain;
   background-origin: content-box;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .checkInput:focus + .checkBox {
@@ -162,6 +172,7 @@
   height: 0.8em;
   background-color: var(--white-color);
   border: var(--border-checkbox);
+  border-radius: 0.2em;
   transition-property: background, border-color;
-  transition: 150ms ease-in-out;
+  transition: 150ms var(--transition);
 }

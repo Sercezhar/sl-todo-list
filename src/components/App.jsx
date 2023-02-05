@@ -1,10 +1,11 @@
 import { customAlphabet } from 'nanoid';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Container from './Container/Container';
+import Modal from './Modal';
+import Options from './Options';
 import Pagination from './Pagination';
-import SortFeature from './SortFeature';
-import ToDoForm from './ToDoForm/ToDoForm';
-import ToDoList from './ToDoList/ToDoList';
+import ToDoForm from './ToDoForm';
+import ToDoList from './ToDoList';
 
 const nanoid = customAlphabet('1234567890', 8);
 
@@ -20,10 +21,13 @@ function App() {
   const [toDos, setToDos] = useState(() => {
     return JSON.parse(window.localStorage.getItem('todos')) ?? defaultToDos;
   });
+  const [clickedTodo, setClickedTodo] = useState(-1);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState(() => {
     return Number(window.localStorage.getItem('sortType')) ?? 0;
   });
+
+  const modalRef = useRef();
 
   useEffect(() => {
     window.localStorage.setItem('todos', JSON.stringify(toDos));
@@ -64,6 +68,20 @@ function App() {
     setToDos([]);
   }
 
+  function showModal(message, action) {
+    modalRef.current.showModal(message, action);
+  }
+
+  function modalOnConfirm(action) {
+    if (action === 'clear') {
+      clearList();
+    }
+
+    if (action === 'delete') {
+      deleteToDo(clickedTodo);
+    }
+  }
+
   function paginateToDos(array) {
     const startIndex = currentPage * limit - limit;
     const endIndex = currentPage * limit;
@@ -80,27 +98,38 @@ function App() {
   }
 
   return (
-    <Container>
-      <ToDoForm addToDo={addToDo} clearList={clearList} />
+    <div>
+      <Modal ref={modalRef} onConfirm={modalOnConfirm} />
 
-      {toDos.length > 0 ? (
-        <SortFeature sortOption={sortOption} setSortOption={setSortOption} />
-      ) : null}
+      <Container>
+        <ToDoForm addToDo={addToDo} showModal={showModal} />
 
-      <ToDoList
-        toDos={paginateToDos(toDos)}
-        deleteToDo={deleteToDo}
-        editToDo={editToDo}
-        toggleChecked={toggleChecked}
-      />
+        {toDos.length > 0 ? (
+          <Options
+            sortOption={sortOption}
+            setSortOption={setSortOption}
+            showModal={showModal}
+          />
+        ) : null}
 
-      <Pagination
-        currentPage={currentPage}
-        total={toDos.length}
-        limit={limit}
-        onPageChange={page => setCurrentPage(page)}
-      />
-    </Container>
+        <ToDoList
+          toDos={paginateToDos(toDos)}
+          deleteToDo={deleteToDo}
+          editToDo={editToDo}
+          toggleChecked={toggleChecked}
+          clickedTodo={clickedTodo}
+          setClickedTodo={setClickedTodo}
+          showModal={showModal}
+        />
+
+        <Pagination
+          currentPage={currentPage}
+          total={toDos.length}
+          limit={limit}
+          onPageChange={page => setCurrentPage(page)}
+        />
+      </Container>
+    </div>
   );
 }
 

@@ -1,7 +1,9 @@
-import { RxChevronLeft } from 'react-icons/rx';
 import classNames from 'classnames/bind';
-import styles from './SortFeature.module.css';
-import useClickOutside from '../../hooks/useClickOutside';
+import { BiSortAlt2 } from 'react-icons/bi';
+import { RxChevronLeft } from 'react-icons/rx';
+import { useMediaQuery } from 'react-responsive';
+import useClickOutside from '../../../hooks/useClickOutside';
+import styles from './OptionsSort.module.css';
 
 let cx = classNames.bind(styles);
 
@@ -10,8 +12,10 @@ const sortOptions = [
   { label: 'Newer ones first', value: 1 },
 ];
 
-function SortFeature({ sortOption, setSortOption }) {
+function OptionsSort({ sortOption, setSortOption }) {
   const { ref, isOpen, setIsOpen } = useClickOutside(false);
+
+  const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
 
   let listClasses = cx({
     list: true,
@@ -45,8 +49,12 @@ function SortFeature({ sortOption, setSortOption }) {
         type="button"
         onClick={() => setIsOpen(prevState => !prevState)}
       >
-        {sortOptions[sortOption].label}
-        <RxChevronLeft size={16} className={iconClasses} />
+        {isTablet ? (
+          sortOptions[sortOption].label
+        ) : (
+          <BiSortAlt2 size={20} color="var(--accent-color)" />
+        )}
+        {isTablet ? <RxChevronLeft size={16} className={iconClasses} /> : null}
       </button>
 
       <ul className={listClasses}>
@@ -66,4 +74,4 @@ function SortFeature({ sortOption, setSortOption }) {
   );
 }
 
-export default SortFeature;
+export default OptionsSort;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './ToDoForm.module.css';
 
-function ToDoForm({ addToDo, clearList }) {
+function ToDoForm({ addToDo }) {
   const [text, setText] = useState('');
 
   function resetState() {
@@ -39,15 +39,7 @@ function ToDoForm({ addToDo, clearList }) {
           />
 
           <button className={styles.addButton} type="sumbit">
-            Add To Do
-          </button>
-
-          <button
-            className={styles.clearButton}
-            type="button"
-            onClick={() => clearList()}
-          >
-            Clear List
+            Add To-Do
           </button>
         </div>
       </form>
