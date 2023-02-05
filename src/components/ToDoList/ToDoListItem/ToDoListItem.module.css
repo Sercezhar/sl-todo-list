@@ -172,6 +172,7 @@
   height: 0.8em;
   background-color: var(--white-color);
   border: var(--border-checkbox);
+  border-color: var(--checkbox-border-color);
   border-radius: 0.2em;
   transition-property: background, border-color;
   transition: 150ms var(--transition);
