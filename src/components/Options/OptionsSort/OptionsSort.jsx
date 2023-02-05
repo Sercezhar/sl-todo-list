@@ -17,29 +17,18 @@ function OptionsSort({ sortOption, setSortOption }) {
 
   const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
 
-  let listClasses = cx({
-    list: true,
+  let radioGroupClasses = cx({
+    radioGroup: true,
     show: isOpen,
   });
   let iconClasses = cx({
     arrowIcon: true,
-    rotate: listClasses.includes('show'),
+    rotate: radioGroupClasses.includes('show'),
   });
 
   function setCurrentSorting(value) {
     setSortOption(value);
     setIsOpen(false);
-  }
-
-  function handleOnKeyPress(event, value) {
-    if (event.key === 'Enter') {
-      setSortOption(value);
-      setIsOpen(false);
-    }
-
-    if (event.key === 'Escape') {
-      setIsOpen(false);
-    }
   }
 
   return (
@@ -57,19 +46,22 @@ function OptionsSort({ sortOption, setSortOption }) {
         {isTablet ? <RxChevronLeft size={16} className={iconClasses} /> : null}
       </button>
 
-      <ul className={listClasses}>
+      <div className={radioGroupClasses}>
         {sortOptions.map(({ label, value }) => (
-          <li
-            className={styles.item}
-            key={value}
-            tabIndex={0}
-            onClick={() => setCurrentSorting(value)}
-            onKeyDown={e => handleOnKeyPress(e, value)}
-          >
+          <label className={styles.radioLabel} key={value}>
+            <input
+              className={styles.radioInput}
+              type="radio"
+              name="sort"
+              value={value}
+              defaultChecked={sortOption === value}
+              onChange={() => setCurrentSorting(value)}
+            />
+
             {label}
-          </li>
+          </label>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

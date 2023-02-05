@@ -4,14 +4,14 @@
 }
 
 .button,
-.list {
+.radioGroup {
   background-color: var(--white-color);
   border: var(--border-main);
   border-radius: 0.5em;
 }
 
 .button,
-.item {
+.radioLabel {
   font-size: 14px;
   outline: none;
   cursor: pointer;
@@ -19,13 +19,7 @@
 }
 
 .button:hover,
-.item:hover {
-  background-color: var(--secondary-color);
-}
-
-.button:focus,
-.item:focus {
-  box-shadow: var(--box-shadow-focus);
+.radioLabel:hover {
   background-color: var(--secondary-color);
 }
 
@@ -44,6 +38,11 @@
   }
 }
 
+.button:focus {
+  box-shadow: var(--box-shadow-focus);
+  background-color: var(--secondary-color);
+}
+
 .arrowIcon {
   rotate: -90deg;
   transition: rotate 150ms var(--transition);
@@ -53,33 +52,73 @@
   rotate: 90deg;
 }
 
-.list {
-  display: none;
+.radioGroup {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   left: 0;
   top: calc(100% + 0.6rem);
   width: 180px;
   border-radius: 0.5em;
   overflow: hidden;
-  pointer-events: none;
   box-shadow: var(--box-shadow-main);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   z-index: 2;
 }
 
-.list.show {
-  display: block;
+.radioGroup.show {
+  opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
-.item {
+.radioLabel {
   position: relative;
-  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 0.6rem;
 }
 
-.item:not(:last-child) {
+.radioLabel:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
 
-.item:focus {
+.radioLabel:focus {
   z-index: 2;
+}
+
+/* custom radio button */
+
+.radioInput {
+  appearance: none;
+  display: grid;
+  place-content: center;
+  margin: 0;
+  margin-right: 0.4em;
+  width: 1.3em;
+  height: 1.3em;
+  background-color: #fff;
+  border: 1px solid var(--radio-border-color);
+  border-radius: 50%;
+  outline: none;
+}
+
+.radioInput:focus {
+  box-shadow: var(--box-shadow-focus);
+}
+
+.radioInput::before {
+  content: '';
+  width: 0.7em;
+  height: 0.7em;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  scale: 0;
+  transition: scale 250ms var(--transition);
+}
+
+.radioInput:checked::before {
+  scale: 1;
 }
