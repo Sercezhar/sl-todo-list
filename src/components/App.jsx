@@ -26,6 +26,7 @@ function App() {
   const [sortOption, setSortOption] = useState(() => {
     return Number(window.localStorage.getItem('sortType')) ?? 0;
   });
+  const [filterOption, setFilterOption] = useState(0);
 
   const modalRef = useRef();
 
@@ -85,16 +86,29 @@ function App() {
   function paginateToDos(array) {
     const startIndex = currentPage * limit - limit;
     const endIndex = currentPage * limit;
+
     const paginatedToDos =
       sortOption === 0
         ? array.slice(startIndex, endIndex)
         : [...array].reverse().slice(startIndex, endIndex);
 
+    const filteredTodos = () => {
+      if (filterOption === 0) {
+        return paginatedToDos;
+      } else if (filterOption === 1) {
+        return paginatedToDos.filter(todo => todo.done);
+      } else if (filterOption === 2) {
+        return paginatedToDos.filter(todo => !todo.done);
+      } else {
+        return;
+      }
+    };
+
     if (paginatedToDos.length === 0 && currentPage > 1) {
       setCurrentPage(prevState => prevState - 1);
     }
 
-    return paginatedToDos;
+    return filteredTodos();
   }
 
   return (
@@ -108,6 +122,8 @@ function App() {
           <Options
             sortOption={sortOption}
             setSortOption={setSortOption}
+            filterOption={filterOption}
+            setFilterOption={setFilterOption}
             showModal={showModal}
           />
         ) : null}

@@ -5,6 +5,11 @@
   margin-bottom: 0.6rem;
 }
 
+.dropdownGroup {
+  display: flex;
+  gap: 12px;
+}
+
 .buttonClear {
   position: relative;
   display: flex;
