@@ -44,13 +44,13 @@
   .inputEdit {
     margin-top: 0.15rem;
     margin-right: 0.67rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.65rem;
   }
 }
 
 .inputEdit {
   margin-left: 0.74rem;
-  padding: 4px 12px;
+  padding: 0.21em 0.75em 0.25em 0.75em;
   width: 100%;
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
@@ -61,6 +61,7 @@
 @media screen and (width >= 768px) {
   .inputEdit {
     margin-right: 1rem;
+    padding: 0.23em 0.74em;
   }
 }
 
