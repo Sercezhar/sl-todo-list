@@ -62,6 +62,7 @@
   border-radius: 0.5em;
   overflow: hidden;
   box-shadow: var(--box-shadow-main);
+  transition: opacity 250ms var(--transition);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;

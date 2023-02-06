@@ -10,11 +10,12 @@ function PaginationItem({ page, currentPage, onPageChange, isDisabled }) {
   });
 
   return (
-    <li className={itemClasses} onClick={() => onPageChange(page)}>
+    <li className={itemClasses}>
       <button
         className={styles.pageButton}
         tabIndex={page === currentPage ? -1 : 0}
         disabled={isDisabled ? true : false}
+        onClick={() => onPageChange(page)}
       >
         {page}
       </button>
