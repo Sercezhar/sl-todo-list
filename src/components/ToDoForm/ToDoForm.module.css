@@ -42,8 +42,7 @@
   opacity: 0.5;
 }
 
-.addButton,
-.clearButton {
+.addButton {
   padding: 12px 12px;
   font-size: 16px;
   font-family: 'DM Sans', sans-serif;
@@ -55,8 +54,7 @@
   cursor: pointer;
 }
 
-.addButton:focus,
-.clearButton:focus {
+.addButton:focus {
   box-shadow: var(--box-shadow-focus);
   z-index: 2;
 }
@@ -79,20 +77,15 @@
 .addButton:hover,
 .addButton:focus {
   opacity: 0.8;
-  scale: 1.06;
+}
+
+@media screen and (width >= 768px) {
+  .addButton:hover,
+  .addButton:focus {
+    scale: 1.06;
+  }
 }
 
 .addButton:focus {
   border-color: var(--accent-color);
-}
-
-.clearButton {
-  background-color: var(--white-color);
-  border-top-right-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-}
-
-.clearButton:hover,
-.clearButton:focus {
-  background-color: var(--secondary-color);
 }
