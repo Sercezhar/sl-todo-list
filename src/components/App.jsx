@@ -98,7 +98,10 @@ function App() {
   function paginateToDos(array) {
     const startIndex = currentPage * limit - limit;
     const endIndex = currentPage * limit;
-    const pagesCount = Math.ceil(handleTotal() / limit);
+    const pagesCount =
+      Math.ceil(handleTotal() / limit) === 0
+        ? 1
+        : Math.ceil(handleTotal() / limit);
 
     const paginatedToDos =
       sortOption === 0
