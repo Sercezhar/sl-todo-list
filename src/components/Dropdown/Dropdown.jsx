@@ -12,6 +12,9 @@ function Dropdown({
   icon,
   currentOption,
   setCurrentOption,
+  setCurrentPage = () => {
+    return;
+  },
 }) {
   const { ref, isOpen, setIsOpen } = useClickOutside(false);
 
@@ -29,6 +32,7 @@ function Dropdown({
   function setCurrentSorting(value) {
     setCurrentOption(value);
     setIsOpen(false);
+    setCurrentPage(1);
   }
 
   return (
@@ -43,14 +47,22 @@ function Dropdown({
       </button>
 
       <div className={radioGroupClasses}>
-        {optionsArray.map(({ label, value }) => (
-          <label className={styles.radioLabel} key={value}>
+        {optionsArray.map(({ label, value, disabled }) => (
+          <label
+            className={styles.radioLabel}
+            key={value}
+            style={{
+              color: disabled ? '#ccc' : '#000',
+              pointerEvents: disabled ? 'none' : 'all',
+            }}
+          >
             <input
               className={styles.radioInput}
               type="radio"
               name={radioGroupName}
               value={value}
-              defaultChecked={currentOption === value}
+              disabled={disabled}
+              checked={currentOption === value}
               onChange={() => setCurrentSorting(value)}
             />
 

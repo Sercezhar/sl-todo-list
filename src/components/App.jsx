@@ -83,9 +83,22 @@ function App() {
     }
   }
 
+  const handleTotal = () => {
+    if (filterOption === 1) {
+      return toDos.filter(todo => todo.done).length;
+    }
+
+    if (filterOption === 2) {
+      return toDos.filter(todo => !todo.done).length;
+    }
+
+    return toDos.length;
+  };
+
   function paginateToDos(array) {
     const startIndex = currentPage * limit - limit;
     const endIndex = currentPage * limit;
+    const pagesCount = Math.ceil(handleTotal() / limit);
 
     const paginatedToDos =
       sortOption === 0
@@ -93,18 +106,40 @@ function App() {
         : [...array].reverse().slice(startIndex, endIndex);
 
     const filteredTodos = () => {
+      const includesDone = toDos.some(todo => todo.done);
+      const includesUndone = toDos.some(todo => !todo.done);
+
       if (filterOption === 0) {
         return paginatedToDos;
+      } else if (filterOption === 1 && !includesDone) {
+        setFilterOption(0);
+        return paginatedToDos;
+      } else if (filterOption === 2 && !includesUndone) {
+        setFilterOption(0);
+        return paginatedToDos;
+      } else if (filterOption === 1 && sortOption === 1) {
+        return [...array]
+          .filter(todo => todo.done)
+          .reverse()
+          .slice(startIndex, endIndex);
       } else if (filterOption === 1) {
-        return paginatedToDos.filter(todo => todo.done);
+        return [...array].filter(todo => todo.done).slice(startIndex, endIndex);
+      } else if (filterOption === 2 && sortOption === 1) {
+        return [...array]
+          .filter(todo => !todo.done)
+          .reverse()
+          .slice(startIndex, endIndex);
       } else if (filterOption === 2) {
-        return paginatedToDos.filter(todo => !todo.done);
-      } else {
-        return;
+        return [...array]
+          .filter(todo => !todo.done)
+          .slice(startIndex, endIndex);
       }
     };
 
     if (paginatedToDos.length === 0 && currentPage > 1) {
+      setCurrentPage(prevState => prevState - 1);
+    }
+    if (currentPage > pagesCount) {
       setCurrentPage(prevState => prevState - 1);
     }
 
@@ -125,6 +160,8 @@ function App() {
             filterOption={filterOption}
             setFilterOption={setFilterOption}
             showModal={showModal}
+            todos={toDos}
+            setCurrentPage={setCurrentPage}
           />
         ) : null}
 
@@ -140,7 +177,7 @@ function App() {
 
         <Pagination
           currentPage={currentPage}
-          total={toDos.length}
+          total={handleTotal()}
           limit={limit}
           onPageChange={page => setCurrentPage(page)}
         />

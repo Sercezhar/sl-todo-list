@@ -9,6 +9,8 @@ function Options({
   filterOption,
   setFilterOption,
   showModal,
+  todos,
+  setCurrentPage,
 }) {
   return (
     <div className={styles.options}>
@@ -18,6 +20,8 @@ function Options({
         <OptionsFilter
           filterOption={filterOption}
           setFilterOption={setFilterOption}
+          todos={todos}
+          setCurrentPage={setCurrentPage}
         />
       </div>
 

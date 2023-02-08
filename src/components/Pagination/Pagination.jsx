@@ -10,9 +10,9 @@ import styles from './Pagination.module.css';
 import PaginationItem from './PaginationItem';
 
 function Pagination({ currentPage, total, limit, onPageChange }) {
-  const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
+  const isTablet = useMediaQuery({ query: '(min-width: 768px)' });
   const pagesCount = Math.ceil(total / limit);
-  const pagesCutCount = isTabletOrDesktop ? 5 : 3;
+  const pagesCutCount = isTablet ? 5 : 3;
   const pagesCut = getPagesCut({ pagesCount, pagesCutCount, currentPage });
   const pages = createAnArray(pagesCut.start, pagesCut.end);
   const isFirstPage = currentPage === 1;
@@ -24,13 +24,13 @@ function Pagination({ currentPage, total, limit, onPageChange }) {
         <div className={styles.wrapper}>
           <ul className={styles.pagination}>
             <PaginationItem
-              page={isTabletOrDesktop ? 'First' : <RxDoubleArrowLeft />}
+              page={isTablet ? 'First' : <RxDoubleArrowLeft />}
               currentPage={currentPage}
               onPageChange={() => onPageChange(1)}
               isDisabled={isFirstPage}
             />
             <PaginationItem
-              page={isTabletOrDesktop ? 'Prev' : <RxChevronLeft />}
+              page={isTablet ? 'Prev' : <RxChevronLeft />}
               currentPage={currentPage}
               onPageChange={() => onPageChange(currentPage - 1)}
               isDisabled={isFirstPage}
@@ -44,13 +44,13 @@ function Pagination({ currentPage, total, limit, onPageChange }) {
               />
             ))}
             <PaginationItem
-              page={isTabletOrDesktop ? 'Next' : <RxChevronRight />}
+              page={isTablet ? 'Next' : <RxChevronRight />}
               currentPage={currentPage}
               onPageChange={() => onPageChange(currentPage + 1)}
               isDisabled={isLastPage}
             />
             <PaginationItem
-              page={isTabletOrDesktop ? 'Last' : <RxDoubleArrowRight />}
+              page={isTablet ? 'Last' : <RxDoubleArrowRight />}
               currentPage={currentPage}
               onPageChange={() => onPageChange(pagesCount)}
               isDisabled={isLastPage}

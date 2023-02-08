@@ -110,6 +110,10 @@
   box-shadow: var(--box-shadow-focus);
 }
 
+.radioInput:disabled {
+  border-color: var(--disabled-color);
+}
+
 .radioInput::before {
   content: '';
   width: 0.7em;
